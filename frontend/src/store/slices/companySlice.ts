@@ -1,6 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import companyService from '@/services/companyService'
 
+interface Company {
+  id: number
+  name: string
+  code: string
+  [key: string]: any
+}
+
 export const fetchCompanies = createAsyncThunk(
   'companies/fetchAll',
   async () => {
@@ -36,7 +43,7 @@ export const deleteCompany = createAsyncThunk(
 const companySlice = createSlice({
   name: 'companies',
   initialState: {
-    items: [],
+    items: [] as Company[],
     loading: false,
     error: null as string | null,
   },
@@ -59,16 +66,16 @@ const companySlice = createSlice({
         state.error = action.error.message || 'Error fetching companies'
       })
       .addCase(createCompany.fulfilled, (state, action) => {
-        state.items.push(action.payload)
+        state.items.push(action.payload as Company)
       })
       .addCase(updateCompany.fulfilled, (state, action) => {
-        const index = state.items.findIndex((item: any) => item.id === action.payload.id)
+        const index = state.items.findIndex((item: Company) => item.id === action.payload.id)
         if (index !== -1) {
-          state.items[index] = action.payload
+          state.items[index] = action.payload as Company
         }
       })
       .addCase(deleteCompany.fulfilled, (state, action) => {
-        state.items = state.items.filter((item: any) => item.id !== action.payload)
+        state.items = state.items.filter((item: Company) => item.id !== action.payload)
       })
   },
 })
