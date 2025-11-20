@@ -70,7 +70,7 @@ export default function BudgetEntry() {
     },
   ])
 
-  const company: Company | undefined = companies?.find((c: any) => c.id === companyId)
+  const company: Company | undefined = (companies as Company[])?.find((c: Company) => c.id === companyId)
 
   useEffect(() => {
     dispatch(fetchCompanies())
