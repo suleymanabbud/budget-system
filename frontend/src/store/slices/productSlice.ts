@@ -1,6 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import productService from '@/services/productService'
 
+interface Product {
+  id: number
+  name: string
+  code: string
+  [key: string]: any
+}
+
 export const fetchProducts = createAsyncThunk(
   'products/fetchAll',
   async () => {
@@ -36,7 +43,7 @@ export const deleteProduct = createAsyncThunk(
 const productSlice = createSlice({
   name: 'products',
   initialState: {
-    items: [],
+    items: [] as Product[],
     loading: false,
     error: null as string | null,
   },
@@ -59,16 +66,16 @@ const productSlice = createSlice({
         state.error = action.error.message || 'Error fetching products'
       })
       .addCase(createProduct.fulfilled, (state, action) => {
-        state.items.push(action.payload)
+        state.items.push(action.payload as Product)
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
-        const index = state.items.findIndex((item: any) => item.id === action.payload.id)
+        const index = state.items.findIndex((item: Product) => item.id === action.payload.id)
         if (index !== -1) {
-          state.items[index] = action.payload
+          state.items[index] = action.payload as Product
         }
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
-        state.items = state.items.filter((item: any) => item.id !== action.payload)
+        state.items = state.items.filter((item: Product) => item.id !== action.payload)
       })
   },
 })
