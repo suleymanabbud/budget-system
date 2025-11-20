@@ -10,6 +10,7 @@ sqlalchemy
 # Security
 python-jose[cryptography]
 passlib[bcrypt]
+email-validator
 
 # Utilities
 python-multipart
