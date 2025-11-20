@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1'
+// Use /budget-api in production (when basePath is set), otherwise use localhost
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 
+  (typeof window !== 'undefined' && window.location.pathname.startsWith('/budget') 
+    ? '/budget-api/v1' 
+    : 'http://localhost:8000/api/v1')
 
 const api = axios.create({
   baseURL: API_URL,
@@ -39,7 +43,8 @@ api.interceptors.response.use(
       console.log('401 Unauthorized - redirecting to login')
       if (typeof window !== 'undefined') {
         localStorage.removeItem('token')
-        window.location.href = '/login'
+        const basePath = typeof window !== 'undefined' && window.location.pathname.startsWith('/budget') ? '/budget' : ''
+        window.location.href = `${basePath}/login`
       }
     }
     return Promise.reject(error)
