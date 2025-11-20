@@ -1,0 +1,183 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  /* direction is controlled by layout <html dir="rtl"> */
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #708472;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a6b5d;
+}
+
+/* RTL Adjustments */
+.MuiDrawer-paper {
+  direction: rtl;
+  position: fixed !important;
+  top: 0 !important;
+  height: 100vh !important;
+  z-index: 1200 !important;
+}
+
+.MuiDrawer-docked {
+  position: fixed !important;
+}
+
+/* Remove global table/text RTL forcing; handled by theme */
+
+.MuiTableCell-head {
+  font-weight: 600 !important;
+}
+
+/* Inputs and labels are styled in MUI theme; no global overrides here */
+
+/* Select dropdown fixes */
+/* Select/menu alignment handled in theme */
+
+/* Button text alignment */
+/* Button alignment handled in theme */
+
+/* Card content alignment */
+/* Card content alignment handled in theme */
+
+/* Typography alignment */
+/* Typography alignment handled in theme */
+
+/* List item alignment */
+/* List alignment handled in theme */
+
+/* Alert message alignment */
+/* Alert alignment handled in theme */
+
+/* Fix charts RTL */
+.recharts-wrapper {
+  direction: ltr;
+}
+
+.recharts-legend-wrapper {
+  direction: rtl !important;
+}
+
+/* Sidebar RTL */
+.MuiDrawer-root {
+  right: 0 !important;
+  left: auto !important;
+  z-index: 1200 !important;
+}
+
+.MuiDrawer-docked {
+  height: 100vh !important;
+}
+
+/* Responsive sidebar - hide on mobile */
+@media (max-width: 600px) {
+  .sidebar-container {
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-container[data-open="true"] {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Mobile backdrop */
+  .mobile-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+  }
+}
+
+/* Main layout fixes */
+.main-layout {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  transition: margin-right 0.3s ease;
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure sidebar doesn't overlap content */
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 1200;
+  pointer-events: none;
+}
+
+.sidebar-container > * {
+  pointer-events: auto;
+}
+
+/* Removed global label/input alignment; handled per-page */
+
+/* Select arrow position fix for RTL */
+.MuiSelect-icon {
+  left: 7px;
+  right: auto;
+}
+
+/* Snackbar/Toast RTL */
+.Toastify__toast {
+  direction: rtl;
+  text-align: right;
+}
+

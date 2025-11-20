@@ -1,0 +1,19 @@
+# FastAPI and dependencies
+fastapi
+uvicorn
+pydantic
+pydantic-settings
+
+# Database
+sqlalchemy
+
+# Security
+python-jose[cryptography]
+passlib[bcrypt]
+
+# Utilities
+python-multipart
+websockets
+python-dateutil
+python-dotenv
+
