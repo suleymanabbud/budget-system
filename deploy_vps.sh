@@ -38,13 +38,31 @@ echo -e "${GREEN}[2/10]${NC} Installing required packages..."
 PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}' | cut -d. -f1,2)
 echo "Detected Python version: $PYTHON_VERSION"
 
-# Install Python and related packages
+# Check if nodejs is already installed
+if command -v nodejs &> /dev/null; then
+    echo "Node.js is already installed: $(nodejs --version)"
+    # npm usually comes with nodejs, check if npm exists
+    if ! command -v npm &> /dev/null; then
+        echo "Installing npm separately..."
+        # Try to install npm from nodesource or use corepack
+        if command -v corepack &> /dev/null; then
+            corepack enable
+        else
+            curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+            apt-get install -y npm
+        fi
+    fi
+else
+    # Install nodejs and npm together
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+    apt-get install -y nodejs
+fi
+
+# Install Python and other packages
 apt-get install -y \
     python3 \
     python3-venv \
     python3-pip \
-    nodejs \
-    npm \
     git \
     nginx \
     supervisor \
@@ -55,8 +73,20 @@ apt-get install -y \
 # Step 3: Verify installations
 echo -e "${GREEN}[3/10]${NC} Verifying installations..."
 python3 --version
-node --version
-npm --version
+if command -v nodejs &> /dev/null; then
+    nodejs --version
+elif command -v node &> /dev/null; then
+    node --version
+fi
+if command -v npm &> /dev/null; then
+    npm --version
+else
+    echo "WARNING: npm not found, trying to enable corepack..."
+    if command -v corepack &> /dev/null; then
+        corepack enable
+        npm --version
+    fi
+fi
 
 # Step 4: Setup Backend
 echo -e "${GREEN}[4/10]${NC} Setting up Backend..."
