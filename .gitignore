@@ -188,3 +188,7 @@ Desktop.ini
 # Project specific
 *.tmp
 *.temp
+
+# Large PDF files
+20251020_Sarh_Brand-Guideline.pdf
+*.pdf
