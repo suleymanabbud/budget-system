@@ -44,8 +44,8 @@ apt-get update -y
 apt-get upgrade -y
 
 apt-get install -y \
-    python3.11 \
-    python3.11-venv \
+    python3 \
+    python3-venv \
     python3-pip \
     nodejs \
     npm \
@@ -61,7 +61,7 @@ apt-get install -y \
 cd /opt/budget-system/backend
 
 # إنشاء بيئة افتراضية
-python3.11 -m venv venv
+python3 -m venv venv
 
 # تفعيل البيئة وتثبيت المكتبات
 source venv/bin/activate

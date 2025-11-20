@@ -33,9 +33,15 @@ apt-get upgrade -y
 
 # Step 2: Install required packages
 echo -e "${GREEN}[2/10]${NC} Installing required packages..."
+
+# Check Python version and install accordingly
+PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}' | cut -d. -f1,2)
+echo "Detected Python version: $PYTHON_VERSION"
+
+# Install Python and related packages
 apt-get install -y \
-    python3.11 \
-    python3.11-venv \
+    python3 \
+    python3-venv \
     python3-pip \
     nodejs \
     npm \
@@ -48,7 +54,7 @@ apt-get install -y \
 
 # Step 3: Verify installations
 echo -e "${GREEN}[3/10]${NC} Verifying installations..."
-python3.11 --version
+python3 --version
 node --version
 npm --version
 
@@ -58,7 +64,7 @@ cd $BACKEND_DIR
 
 # Create virtual environment
 if [ ! -d "$VENV_DIR" ]; then
-    python3.11 -m venv venv
+    python3 -m venv venv
 fi
 
 # Activate virtual environment and install dependencies
