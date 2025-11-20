@@ -42,6 +42,13 @@ interface BudgetRow {
   notes: string
 }
 
+interface Company {
+  id: number
+  name: string
+  code: string
+  [key: string]: any
+}
+
 export default function BudgetEntry() {
   const params = useParams()
   const companyId = Number(params.companyId)
@@ -63,7 +70,7 @@ export default function BudgetEntry() {
     },
   ])
 
-  const company = companies.find((c: any) => c.id === companyId)
+  const company: Company | undefined = companies?.find((c: any) => c.id === companyId)
 
   useEffect(() => {
     dispatch(fetchCompanies())
