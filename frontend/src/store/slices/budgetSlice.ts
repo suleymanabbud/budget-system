@@ -4,6 +4,21 @@ import { fetchCompanies } from './companySlice'
 
 export { fetchCompanies }
 
+interface Budget {
+  id: number
+  company_id: number
+  account_id: number
+  year: number
+  quarter: string
+  month: number
+  product_id: number
+  budget_type: 'estimated' | 'actual'
+  quantity: number
+  price: number
+  notes?: string
+  [key: string]: any
+}
+
 // Async thunks
 export const fetchBudgets = createAsyncThunk(
   'budgets/fetchAll',
@@ -48,7 +63,7 @@ export const deleteBudget = createAsyncThunk(
 const budgetSlice = createSlice({
   name: 'budgets',
   initialState: {
-    items: [],
+    items: [] as Budget[],
     summary: null as any,
     loading: false,
     error: null as string | null,
@@ -86,18 +101,18 @@ const budgetSlice = createSlice({
       })
       // Create budget
       .addCase(createBudget.fulfilled, (state, action) => {
-        state.items.push(action.payload)
+        state.items.push(action.payload as Budget)
       })
       // Update budget
       .addCase(updateBudget.fulfilled, (state, action) => {
-        const index = state.items.findIndex((item: any) => item.id === action.payload.id)
+        const index = state.items.findIndex((item: Budget) => item.id === action.payload.id)
         if (index !== -1) {
-          state.items[index] = action.payload
+          state.items[index] = action.payload as Budget
         }
       })
       // Delete budget
       .addCase(deleteBudget.fulfilled, (state, action) => {
-        state.items = state.items.filter((item: any) => item.id !== action.payload)
+        state.items = state.items.filter((item: Budget) => item.id !== action.payload)
       })
   },
 })
