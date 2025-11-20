@@ -6,8 +6,6 @@ import {
   Typography,
   Card,
   CardContent,
-  TreeView,
-  TreeItem,
   TextField,
   Button,
   Dialog,
@@ -21,6 +19,7 @@ import {
   Alert,
   CircularProgress
 } from '@mui/material'
+import { TreeView, TreeItem } from '@mui/x-tree-view'
 import {
   ExpandMore,
   ChevronRight,
