@@ -104,7 +104,7 @@ const LoginPage = () => {
           } else if (role === 'COMPANY_ADMIN' || role === 'COMPANY_USER') {
             router.push('/company-home')
           } else {
-            router.push('/dashboard')
+        router.push('/dashboard')
           }
         }, 1000)
       } else {
@@ -141,9 +141,9 @@ const LoginPage = () => {
             inset: 0,
             bgcolor: '#ffffff',
             zIndex: 9999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             animation: 'slideUp 2.0s ease-in-out 0.4s forwards',
             '@keyframes slideUp': {
               '0%': { transform: 'translateY(0%)' },
@@ -159,7 +159,7 @@ const LoginPage = () => {
             priority
             style={{ borderRadius: 24, objectFit: 'cover', boxShadow: '0 12px 40px rgba(0,0,0,0.2)' }}
           />
-        </Box>
+            </Box>
       )}
         {/* Brand heading above the card */}
         <Box
@@ -190,14 +190,14 @@ const LoginPage = () => {
               صرح القابضة
             </Typography>
           </Box>
-        </Box>
+          </Box>
 
         <Container maxWidth="sm" sx={{ px: 2 }}>
-        <Paper
+          <Paper
           elevation={20}
-          sx={{
+            sx={{
             borderRadius: 3,
-            overflow: 'hidden',
+              overflow: 'hidden',
             backgroundColor: 'rgba(255,255,255,0.88)',
             backdropFilter: 'blur(8px)',
             border: '1px solid rgba(255,255,255,0.6)',
@@ -205,9 +205,9 @@ const LoginPage = () => {
           }}
         >
           <CardContent sx={{ p: { xs: 3, sm: 5 } }}>
-            <Box textAlign="center" mb={3}>
+              <Box textAlign="center" mb={3}>
               <Typography variant="h4" fontWeight={800}>تسجيل الدخول</Typography>
-            </Box>
+              </Box>
 
             <Collapse in={!!error}>
               <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>
@@ -218,72 +218,72 @@ const LoginPage = () => {
             </Collapse>
 
             <form onSubmit={handleSubmit} noValidate>
-              <Stack spacing={2.5}>
+                <Stack spacing={2.5}>
                 <TextField
-                  fullWidth
+                    fullWidth
                   name="username"
-                  label="اسم المستخدم"
-                  placeholder="أدخل اسم المستخدم"
-                  value={formData.username}
+                    label="اسم المستخدم"
+                    placeholder="أدخل اسم المستخدم"
+                    value={formData.username}
                   onChange={handleInputChange}
                   error={fieldErrors.username}
                   helperText={fieldErrors.username ? 'هذا الحقل مطلوب' : ''}
                   inputProps={{ suppressHydrationWarning: true, autoComplete: 'username', dir: 'ltr' }}
                   InputProps={{}}
-                  sx={{
-                    '& .MuiOutlinedInput-root': {
-                      borderRadius: 2,
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        borderRadius: 2,
                       '& input': { direction: 'ltr', textAlign: 'left' },
-                    },
+                      },
                     '& .MuiInputLabel-root': {},
-                  }}
-                  required
+                    }}
+                    required
                   disabled={loading}
-                />
+                  />
 
                 <TextField
-                  fullWidth
-                  type={showPassword ? 'text' : 'password'}
+                    fullWidth
+                    type={showPassword ? 'text' : 'password'}
                   name="password"
-                  label="كلمة المرور"
-                  placeholder="أدخل كلمة المرور"
-                  value={formData.password}
+                    label="كلمة المرور"
+                    placeholder="أدخل كلمة المرور"
+                    value={formData.password}
                   onChange={handleInputChange}
                   error={fieldErrors.password}
                   helperText={fieldErrors.password ? 'هذا الحقل مطلوب' : ''}
                   inputProps={{ suppressHydrationWarning: true, autoComplete: 'current-password', dir: 'ltr' }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
                         <IconButton aria-label="toggle password visibility" onClick={() => setShowPassword(!showPassword)} edge="start" disabled={loading} suppressHydrationWarning>
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                  sx={{
-                    '& .MuiOutlinedInput-root': {
-                      borderRadius: 2,
+                              {showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        borderRadius: 2,
                       '& input': { direction: 'ltr', textAlign: 'left' },
-                    },
+                      },
                     '& .MuiInputLabel-root': {},
-                  }}
-                  required
+                    }}
+                    required
                   disabled={loading}
-                />
+                  />
 
                 <Button type="submit" variant="contained" size="large" disabled={loading} sx={{ py: 1.6, fontSize: 16, borderRadius: 2, textTransform: 'none', fontWeight: 700 }} suppressHydrationWarning>
-                  {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
-                </Button>
-              </Stack>
-            </form>
+                    {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+                  </Button>
+                </Stack>
+              </form>
 
-            <Box sx={{ mt: 4, textAlign: 'center' }}>
+              <Box sx={{ mt: 4, textAlign: 'center' }}>
               <Typography variant="caption" color="text.secondary">© {new Date().getFullYear()} صرح القابضة - جميع الحقوق محفوظة</Typography>
-            </Box>
-          </CardContent>
-        </Paper>
-        </Container>
+              </Box>
+            </CardContent>
+          </Paper>
+      </Container>
 
         <Snackbar
           open={snackbarOpen}
