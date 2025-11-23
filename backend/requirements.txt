@@ -18,3 +18,7 @@ websockets
 python-dateutil
 python-dotenv
 
+# Excel processing
+pandas
+openpyxl
+
